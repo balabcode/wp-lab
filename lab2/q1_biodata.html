@@ -1,0 +1,91 @@
+<!-- Design the student bio-data form using button, label, textbox, radio button, table and
+checkbox using CSS. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Biodata Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Student Biodata Form</h1>
+        <form>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
+            </div>
+
+            <div class="form-group">
+                <label for="student">Are You a Student?</label><br>
+                <label class="radio-inline">
+                    <input type="radio" name="student" id="yes" value="yes"> Yes
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="student" id="no" value="no"> No
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label for="course">Select Your Courses:</label><br>
+                <label class="checkbox-inline">
+                    <input type="checkbox" name="course" id="dsa" value="dsa"> DSA
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" name="course" id="dbs" value="dbs"> DBS
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" name="course" id="os" value="os"> OS
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" name="course" id="ai" value="ai"> AI
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" name="course" id="ml" value="ml"> ML
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label for="table">Fee Table:</label>
+                <table class="table table-bordered" id="feeTable">
+                    <thead>
+                        <tr>
+                            <th>Course</th>
+                            <th>Fee</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>DSA</td>
+                            <td>35,000</td>
+                        </tr>
+                        <tr>
+                            <td>DBS</td>
+                            <td>30,000</td>
+                        </tr>
+                        <tr>
+                            <td>OS</td>
+                            <td>28,000</td>
+                        </tr>
+                        <tr>
+                            <td>AI</td>
+                            <td>40,000</td>
+                        </tr>
+                        <tr>
+                            <td>ML</td>
+                            <td>38,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
