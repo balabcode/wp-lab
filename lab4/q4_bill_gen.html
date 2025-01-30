@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        select,
+        input[type="number"] {
+            padding: 8px;
+            margin: 10px 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Bill Generator</h1>
+        <select id="brand">
+            <option value="hp">HP</option>
+            <option value="nokia">Nokia</option>
+            <option value="samsung">Samsung</option>
+            <option value="motorola">Motorola</option>
+            <option value="apple">Apple</option>
+        </select>
+        <br><br>
+        <input type="checkbox" id="mobile"> Mobile
+        <input type="checkbox" id="laptop"> Laptop
+        <br><br>
+        <input type="number" id="quantity" value="1" min="1">
+        <br><br>
+        <button id="produce-bill">Produce Bill</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(function () {
+            const prices = { hp: 500, nokia: 300, samsung: 600, motorola: 400, apple: 1000 };
+            $('#produce-bill').click(function () {
+                let brand = $('#brand').val(),
+                    qty = $('#quantity').val(),
+                    total = 0;
+                if ($('#mobile').is(':checked')) total += prices[brand] * qty;
+                if ($('#laptop').is(':checked')) total += (prices[brand] + 200) * qty;
+                alert('Total Amount: $' + total);
+            });
+        });
+    </script>
+</body>
+
+</html>
