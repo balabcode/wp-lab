@@ -1,0 +1,116 @@
+<!-- Design a calculator to perform basic arithmetic operations. Use textboxes and buttons
+to design web page. -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <style>
+        table {
+            border: 1px solid black;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        input[type="button"] {
+            /* width: 100%; */
+            padding: 20px 40px;
+            background-color: grey;
+            color: black;
+            font-size: 24px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+        }
+
+        input[type="text"] {
+            padding: 20px 30px;
+            font-size: 24px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            border: 2px solid black;
+        }
+
+        .full-width {
+            width: 100%;
+            grid-column: span 4;
+        }
+
+        .calculator-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            width: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="calculator-container">
+            <input type="text" id="result" class="full-width" readonly>
+            <input type="button" value="clear" class="full-width" id="clear">
+
+            <input type="button" value="1">
+            <input type="button" value="2">
+            <input type="button" value="3">
+            <input type="button" value="/">
+
+            <input type="button" value="4">
+            <input type="button" value="5">
+            <input type="button" value="6">
+            <input type="button" value="*">
+
+            <input type="button" value="7">
+            <input type="button" value="8">
+            <input type="button" value="9">
+            <input type="button" value="-">
+
+            <input type="button" value="0">
+            <input type="button" value=".">
+            <input type="button" value="=">
+            <input type="button" value="+">
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            let currentInput = '';
+
+            $('input[type="button"]').not('#clear').not('#result').click(function () {
+                const value = $(this).val();
+
+                currentInput += value;
+                $('#result').val(currentInput);
+            });
+
+            $('#clear').click(function () {
+                currentInput = '';
+                $('#result').val(currentInput);
+            });
+
+            $('input[value="="]').click(function () {
+                try {
+                    currentInput = currentInput.replace(/[^0-9+\-*/().]/g, '');
+                    let result = eval(currentInput);
+                    if (result === Infinity || result === -Infinity || isNaN(result)) {
+                        throw new Error("Invalid result");
+                    }
+                    currentInput = result.toString();
+                    $('#result').val(currentInput);
+                } catch (error) {
+                    $('#result').val('Error');
+                    currentInput = '';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

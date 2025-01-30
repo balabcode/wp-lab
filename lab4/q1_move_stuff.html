@@ -1,0 +1,136 @@
+<!-- Write a web page which contains table with 3 X 3 dimensions (fill some data) and one
+image. Style the rows with alternate color. Move the table and image together from
+right to left when button is clicked. -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Image Moving</title>
+</head>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<style>
+    .container {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .content {
+        display: flex;
+        align-items: center;
+        position: relative;
+        right: -100%;
+        transition: right 1s ease;
+    }
+
+    img {
+        height: 100px;
+    }
+
+    .main_table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    .main_table th,
+    .main_table td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .main_table tr:nth-child(odd) {
+        background-color: white;
+    }
+
+    .main_table tr:nth-child(even) {
+        background-color: yellow;
+    }
+
+    .submit-button {
+        padding: 10px;
+        border-radius: 5px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="content">
+            <table class="main_table">
+                <tr>
+                    <th>
+                        Company
+                    </th>
+                    <th>
+                        Model
+                    </th>
+                    <th>
+                        Photo
+                    </th>
+                </tr>
+
+                <tr>
+                    <td>
+                        Suzuki
+                    </td>
+                    <td>
+                        Gixxer
+                    </td>
+                    <td>
+                        <img
+                            src="https://imgd.aeplcdn.com/664x374/n/bw/models/colors/suzuki-select-model-glass-sparkle-black-1671516577831.png?q=80">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Hero
+                    </td>
+                    <td>
+                        Xtreme 160R 4V
+                    </td>
+                    <td>
+                        <img src="https://m.media-amazon.com/images/I/7179pAMOsUL._AC_UF1000,1000_QL80_.jpg">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Honda
+                    </td>
+                    <td>
+                        CB Hornet 160R
+                    </td>
+                    <td>
+                        <img
+                            src="https://imgd.aeplcdn.com/1056x594/n/bw/models/colors/honda-cb-hornet-160r-2018-striking-green-1522404272077.jpg?20190103151915&q=80">
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <button class="submit-button">Submit</button>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $(".submit-button").click(function () {
+                $(".content").animate({
+                    right: "0",
+                }, 1000);
+            })
+        })
+    </script>
+</body>
+
+</html>

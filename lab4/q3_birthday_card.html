@@ -1,0 +1,140 @@
+<!-- Create a web page to design a birthday card shown below. -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Card</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .form {
+            width: 45%;
+            padding: 10px;
+        }
+
+        label {
+            font-size: 12px;
+        }
+
+        .preview {
+            width: 45%;
+            padding: 10px;
+        }
+
+        .card {
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .card img {
+            width: 100%;
+            max-width: 200px;
+            margin-bottom: 20px;
+        }
+
+        .card-text {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="form">
+            <form>
+                <label for="bg-color">Choose a background color:</label> <br>
+                <select name="bg-color" id="bg-color">
+                    <option value="white">White</option>
+                    <option value="yellow">Yellow</option>
+                    <option value="blue">Light Blue</option>
+                </select> <br>
+
+                <label for="font-select">Choose a font:</label> <br>
+                <select name="font-select" id="font-select">
+                    <option value="verdana">Verdana</option>
+                    <option value="arial">Arial</option>
+                </select> <br>
+
+                <label for="border-style">Choose a border style:</label> <br>
+                <input type="radio" id="none" name="border-style" value="none">
+                <label for="none">None</label> <br>
+
+                <input type="radio" id="double" name="border-style" value="double">
+                <label for="double">Double</label> <br>
+
+                <input type="radio" id="solid" name="border-style" value="solid">
+                <label for="solid">Solid</label> <br>
+
+                <input type="checkbox" id="addpic" name="addpic">
+                <label for="addpic">Add the default picture</label> <br>
+
+                <label for="greeting-text">Enter the greeting text below:</label> <br>
+                <input type="text" name="greeting-text" id="greeting-text"> <br>
+
+                <input type="button" value="Update" id="update">
+            </form>
+        </div>
+
+        <div class="preview">
+            <div class="card" id="card">
+                <div class="card-text" id="card-text">Your Greeting Text Here!</div>
+
+                <img id="card-img"
+                    src="https://img.freepik.com/premium-vector/happy-birthday-greeting-card-with-colorful-confetti-stars_123891-119576.jpg"
+                    style="display:none;">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#bg-color').change(function () {
+                $('#card').css('background-color', $(this).val());
+            });
+
+            $('#font-select').change(function () {
+                $('#card-text').css('font-family', $(this).val());
+            });
+
+            $('input[name="border-style"]').change(function () {
+                let borderStyle = $('input[name="border-style"]:checked').val();
+                if (borderStyle === 'none') {
+                    $('#card').css('border', 'none');
+                } else if (borderStyle === 'double') {
+                    $('#card').css('border', '5px double black');
+                } else if (borderStyle === 'solid') {
+                    $('#card').css('border', '5px solid black');
+                }
+            });
+
+            $('#addpic').change(function () {
+                if (this.checked) {
+                    $('#card-img').show();
+                } else {
+                    $('#card-img').hide();
+                }
+            });
+
+            $('#greeting-text').on('input', function () {
+                $('#card-text').text($(this).val());
+            });
+
+            $('#update').click(function () {
+                alert('Card Updated!');
+            });
+        });
+    </script>
+</body>
+
+</html>
