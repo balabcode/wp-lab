@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q1 - Student Form</title>
+</head>
+
+<body>
+    <h1>Enter Student Details</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if student_data %}
+    <h2>Student Details</h2>
+    <textarea rows="10" cols="50">
+        Name: {{ student_data.name }}
+        Date of Birth: {{ student_data.dob }}
+        Address: {{ student_data.address }}
+        Contact Number: {{ student_data.contact_number }}
+        Email ID: {{ student_data.email }}
+        English Marks: {{ student_data.english_marks }}
+        Physics Marks: {{ student_data.physics_marks }}
+        Chemistry Marks: {{ student_data.chemistry_marks }}
+        Total Marks: {{ student_data.total_marks }}
+        </textarea>
+
+    <h3>Total Percentage: {{ total_percentage }}%</h3>
+    {% endif %}
+</body>
+
+</html>
