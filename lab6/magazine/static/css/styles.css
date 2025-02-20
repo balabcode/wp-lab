@@ -1,0 +1,23 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.cover {
+    position: relative;
+    width: 800px;
+    height: 1000px;
+    margin: auto;
+    text-align: center;
+}
+
+.cover img {
+    width: 100%;
+    height: auto;
+}
+
+.cover h1, .cover h2 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Verdana', sans-serif;
+}

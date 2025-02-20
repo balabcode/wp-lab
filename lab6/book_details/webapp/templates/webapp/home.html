@@ -1,0 +1,14 @@
+<!-- webapp/templates/webapp/home.html -->
+{% extends 'webapp/base.html' %}
+
+{% block content %}
+    <h1>Book Details</h1>
+    {% if book.cover_image %}
+        <img src="{{ book.cover_image.url }}" alt="{{ book.title }} cover" width="200">
+    {% endif %}
+    <ul>
+        <li><a href="{% url 'webapp:metadata' %}">Metadata</a></li>
+        <li><a href="{% url 'webapp:reviews' %}">Reviews</a></li>
+        <li><a href="{% url 'webapp:publisher_info' %}">Publisher Info</a></li>
+    </ul>
+{% endblock %}

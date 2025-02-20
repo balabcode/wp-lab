@@ -1,0 +1,14 @@
+<!-- webapp/templates/webapp/base.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Details</title>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'webapp:home' %}">Home</a>
+    </nav>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

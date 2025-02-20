@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Magazine Cover</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="cover" style="background-color: {{ form.cleaned_data.background_color }};">
+        <img src="{{ form.cleaned_data.image.url }}" alt="Cover Image">
+        <h1 style="color: {{ form.cleaned_data.font_color }}; font-size: {{ form.cleaned_data.font_size }}px;">
+            {{ form.cleaned_data.title }}
+        </h1>
+        <h2 style="color: {{ form.cleaned_data.font_color }}; font-size: {{ form.cleaned_data.font_size }}px;">
+            {{ form.cleaned_data.subtitle }}
+        </h2>
+    </div>
+</body>
+</html>
