@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Grocery Checklist</title>
+    <style>
+        table {
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+        td, th {
+            border: 1px solid black;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Select Item:</h2>
+    <form method="post">
+        {% csrf_token %}
+        {% for item in items %}
+            <input type="checkbox" name="{{ item.name|lower }}" id="{{ item.name }}">
+            <label for="{{ item.name }}">{{ item.name }}</label><br>
+        {% endfor %}
+        <button type="submit">Add Item</button>
+    </form>
+
+    {% if selected_items %}
+        <h3>Item Name    Item Price</h3>
+        <table>
+            <tr>
+                <th>Item Name</th>
+                <th>Item Price</th>
+            </tr>
+            {% for item in selected_items %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.price }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+</body>
+</html>
