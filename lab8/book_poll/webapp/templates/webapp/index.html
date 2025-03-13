@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Poll</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">Book Poll</a>
+        </div>
+    </nav>
+    <div class="container mt-4">
+        <div class="card shadow">
+            <div class="card-body">
+                {% if show_results %}
+                    <h2 class="mb-4">Poll Results</h2>
+                    <p class="text-muted mb-4">Total votes: {{ total_votes }}</p>
+                    <div class="list-group">
+                        <div class="list-group-item">
+                            Good: {{ percentages.Good|default:0 }}%
+                        </div>
+                        <div class="list-group-item">
+                            Satisfactory: {{ percentages.Satisfactory|default:0 }}%
+                        </div>
+                        <div class="list-group-item">
+                            Bad: {{ percentages.Bad|default:0 }}%
+                        </div>
+                    </div>
+                    <a href="/" class="btn btn-secondary mt-3">Vote Again</a>
+                {% else %}
+                    <h2 class="mb-4">How is the book ASP.NET with C# by Vipul Prakashan?</h2>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="vstack gap-3 mb-4">
+                            {% for choice in form.choice %}
+                                <div class="form-check">
+                                    {{ choice.tag }}
+                                    <label class="form-check-label" for="{{ choice.id_for_label }}">
+                                        {{ choice.choice_label }}
+                                    </label>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-2">VOTE</button>
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
