@@ -1,0 +1,108 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Website Directory</title>
+</head>
+<body>
+    <h1>Add Category</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ category_form.as_p }}
+        <button type="submit" name="category_submit">Add Category</button>
+    </form>
+
+    <h1>Add Page</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ page_form.as_p }}
+        <button type="submit">Add Page</button>
+    </form>
+
+    <h1>Directory</h1>
+    {% for category in categories %}
+        <h2>{{ category.name }}</h2>
+        <p>Visits: {{ category.visits }} | Likes: {{ category.likes }}</p>
+        <ul>
+        {% for page in category.page_set.all %}
+            <li><a href="{{ page.url }}">{{ page.title }}</a> (Views: {{ page.views }})</li>
+        {% endfor %}
+        </ul>
+    {% endfor %}
+</body>
+</html> -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Website Directory</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h1 class="card-title h4 mb-0">Add Category</h1>
+                    </div>
+                    <div class="card-body">
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                {{ category_form.as_p }}
+                            </div>
+                            <button type="submit" name="category_submit" class="btn btn-primary">Add Category</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header bg-success text-white">
+                        <h1 class="card-title h4 mb-0">Add Page</h1>
+                    </div>
+                    <div class="card-body">
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                {{ page_form.as_p }}
+                            </div>
+                            <button type="submit" class="btn btn-success">Add Page</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-dark text-white">
+                        <h1 class="card-title h4 mb-0">Directory</h1>
+                    </div>
+                    <div class="card-body">
+                        {% for category in categories %}
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <h2 class="h5 mb-0">{{ category.name }}</h2>
+                                </div>
+                                <div class="card-body">
+                                    <p class="text-muted small mb-2">Visits: {{ category.visits }} | Likes: {{ category.likes }}</p>
+                                    <ul class="list-group">
+                                        {% for page in category.page_set.all %}
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                <a href="{{ page.url }}" class="btn btn-link btn-sm text-start">
+                                                    {{ page.title }}
+                                                </a>
+                                                <span class="badge bg-secondary">Views: {{ page.views }}</span>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

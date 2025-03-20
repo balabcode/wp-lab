@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Employee Locator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-4">
+    <h2 class="mb-4">Employee Management</h2>
+    
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            Insert Employee Work Details
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                {{ works_form.as_p }}
+                <button type="submit" name="submit_works" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header bg-success text-white">
+            Search Employees by Company
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                {{ search_form.as_p }}
+                <button type="submit" name="submit_search" class="btn btn-success">Search</button>
+            </form>
+        </div>
+    </div>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    {% if results %}
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                Results for company: {{ searched_company }}
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Company</th>
+                            <th>Salary</th>
+                            <th>City</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for emp in results %}
+                        <tr>
+                            <td>{{ emp.name }}</td>
+                            <td>{{ emp.company }}</td>
+                            <td>{{ emp.salary }}</td>
+                            <td>{{ emp.city }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    {% endif %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
